@@ -10,7 +10,20 @@ https://www.figma.com/design/FRfbMHys4JINX4V9qBxgbf/Frontend-Assessment?node-id=
 - **Styling:** Tailwind CSS
 - **State Management:** React Hooks
 
+## Live Link
+https://vovwe-novacrust-test.vercel.app/
+
 ## Setup Instructions
 1. Clone the repository:
    ```bash
-   git clone [YOUR_REPO_LINK]
+   git clone https://github.com/kingvovwe/novacrust-test.git
+
+2. Install dependencies:
+   ```bash
+   npm install
+
+3. Run the development server:
+   ```bash
+   npm run dev
+
+4. View the Results
