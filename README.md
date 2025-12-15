@@ -4,6 +4,9 @@ I Vovwe, made a responsive, crypto checkout frontend built for the Novacrust ass
 
 https://www.figma.com/design/FRfbMHys4JINX4V9qBxgbf/Frontend-Assessment?node-id=0-1
 
+
+I was a little confused by the 2 page rule, because i only saw one page in the design page tab
+
 ## Tech Stack
 - **Framework:** Next.js (App Router)
 - **Language:** TypeScript
