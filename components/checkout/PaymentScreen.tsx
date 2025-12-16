@@ -18,7 +18,7 @@ export function PaymentScreen({ onBack, onNext }: { onBack: () => void; onNext: 
         <button onClick={onBack} className="absolute left-0 -ml-2 p-2 text-gray-400 hover:text-[#003B40] transition-colors">
             <ArrowLeft size={20} className="stroke-[3px]" />
         </button>
-        <h2 className="text-[17px] font-bold text-[#003B40] w-full text-center">Send ETH to the address below</h2>
+        <h2 className="text-[17px] font-bold text-[#003B40] w-full text-center px-10 leading-right">Send ETH to the address below</h2>
       </div>
 
       <div className="flex justify-center mb-4 shrink-0">
@@ -31,7 +31,6 @@ export function PaymentScreen({ onBack, onNext }: { onBack: () => void; onNext: 
         </button>
       </div>
 
-      {/* Reduced padding from p-5 to p-4 */}
       <div className="bg-[#F9FAFB] rounded-xl p-4 space-y-3 mb-4 shrink-0">
         <div className="flex justify-between items-center text-[13px]">
             <span className="text-gray-500 font-medium">Amount to send</span>
@@ -49,7 +48,6 @@ export function PaymentScreen({ onBack, onNext }: { onBack: () => void; onNext: 
         </div>
       </div>
 
-      {/* Footer Section - Pushed to bottom */}
       <div className="flex-1 mt-auto flex flex-col justify-end gap-4">
         <div className="flex gap-3 text-[11px] text-gray-500 leading-relaxed px-1">
             <Info size={16} className="shrink-0 mt-0.5 text-gray-400" />

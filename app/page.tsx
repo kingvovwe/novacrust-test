@@ -103,12 +103,14 @@ export default function Home() {
                         <RecipientBankScreen 
                             onBack={() => setStep("swap")} 
                             onNext={() => setStep("recipient-contact")}
+                            showToast={triggerToast}
                         />
                     )}
                     {step === "recipient-contact" && (
                         <RecipientContactScreen 
                             onBack={() => setStep("recipient-bank")} 
-                            onNext={() => setStep("payment")} 
+                            onNext={() => setStep("payment")}
+                            showToast={triggerToast}
                         />
                     )}
                     {step === "payment" && (

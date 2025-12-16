@@ -3,16 +3,17 @@ import { ArrowLeft, Landmark, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { CustomSelect } from "@/components/ui/CustomSelect";
 
-export function RecipientBankScreen({ onBack, onNext }: { 
+export function RecipientBankScreen({ onBack, onNext, showToast }: { 
   onBack: () => void;
   onNext: () => void; 
-
+  showToast: (message: string, type: "error" | "success") => void;
 }) {
   const [accountNum, setAccountNum] = useState("");
   const [resolvedName, setResolvedName] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [bank, setBank] = useState<any>(null);
 
+  
   useEffect(() => {
     if (accountNum.length > 9) {
       setIsLoading(true);
@@ -34,6 +35,22 @@ export function RecipientBankScreen({ onBack, onNext }: {
     { label: "Access Bank", icon: <Landmark size={18} className="text-blue-600" /> }
   ];
 
+  const canProceed = () => {
+    if (!bank) {
+        showToast("Please select a bank", "error");
+        return;
+    }
+    if (accountNum.length !== 10 || isNaN(Number(accountNum))) {
+        showToast("Please enter a valid 10-digit account number", "error");
+        return;
+    }
+    if (!resolvedName) {
+        showToast("Account number not resolved", "error");
+        return;
+    }
+    onNext();
+  };
+
   return (
     <div className="flex flex-col h-full">
       <div className="flex items-center mb-4 relative shrink-0">
@@ -53,7 +70,7 @@ export function RecipientBankScreen({ onBack, onNext }: {
         />
 
         <div className="space-y-1">
-            <label className="text-xs font-bold text-[#003B40] block pl-1">Account number</label>
+            <label className="text-xs font-bold text-[#003B40] block pl-1">Account number (10 digits)</label>
             <input
                 className="flex h-14 w-full rounded-xl border border-gray-200 bg-white px-4 text-[15px] font-bold text-[#003B40] outline-none focus:ring-1 focus:ring-[#003B40] focus:border-[#003B40] placeholder:font-normal placeholder:text-sm placeholder:text-gray-300 transition-all"
                 placeholder="Enter account number"
@@ -82,7 +99,7 @@ export function RecipientBankScreen({ onBack, onNext }: {
       </div>
 
       <div className="flex-1"></div>
-      <Button onClick={onNext} className="w-full mt-4" disabled={!resolvedName || isLoading}>Next</Button>
+      <Button onClick={canProceed} className="w-full mt-4" disabled={isLoading}>Next</Button>
     </div>
   );
 }

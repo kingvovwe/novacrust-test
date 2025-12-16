@@ -66,7 +66,6 @@ export function SwapScreen({ onNext, showToast }: {
     label: "ETH", 
     icon: <EthIcon /> 
   });
-  const isValid = parseFloat(amount) > 0;
 
   const currencyOptions = [
     { code: "ETH", label: "ETH", icon: <EthIcon /> },
@@ -83,7 +82,7 @@ export function SwapScreen({ onNext, showToast }: {
     { label: "Access Bank", icon: <AccessBankIcon />, subLabel: "******** 5678" },
   ];
 
-  const checkAmount = () => {
+  const canProceed = () => {
     const value = parseFloat(amount);
     if (isNaN(value) || value <= 0.001) {
       showToast("Minimum amount is 0.001 units", "error");
@@ -91,6 +90,16 @@ export function SwapScreen({ onNext, showToast }: {
     } 
     if (value > 1000) {
         showToast("Maximum swap limit is 1000 ETH", "error");
+        return;
+    }
+
+    if (!payFrom) {
+        showToast("Please select a wallet to pay from", "error");
+        return;
+    }
+
+    if (!payTo) {
+        showToast("Please select a bank to receive funds", "error");
         return;
     }
 
@@ -138,7 +147,7 @@ export function SwapScreen({ onNext, showToast }: {
       </div>
 
       <div className="mt-auto pt-4">
-          <Button onClick={checkAmount} className="w-full" disabled={!isValid}>Convert now</Button>
+          <Button onClick={canProceed} className="w-full">Convert now</Button>
       </div>
     </div>
   );
